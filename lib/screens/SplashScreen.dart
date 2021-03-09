@@ -5,14 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:mom4me/utils/Assets.dart';
 import 'package:mom4me/utils/Colors.dart';
 
-
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   splashMove() {
     return Timer(Duration(seconds: 4), navigatePage);
   }
@@ -20,9 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width =  MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Container(
         height: height,
@@ -46,6 +44,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   navigatePage() async {
-    Navigator.pushReplacementNamed(context,'/home');
+    Navigator.pushReplacementNamed(context, '/home');
   }
 }

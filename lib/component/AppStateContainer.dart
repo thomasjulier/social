@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mom4me/utils/CustomUtils.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-
 class AppStateContainer extends StatefulWidget {
   final Widget child;
 
@@ -13,14 +12,13 @@ class AppStateContainer extends StatefulWidget {
   _AppStateContainerState createState() => _AppStateContainerState();
 
   static _AppStateContainerState of(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(_InheritedStateContainer)
-    as _InheritedStateContainer)
+    return (context
+            .dependOnInheritedWidgetOfExactType<_InheritedStateContainer>())
         .data;
   }
 }
 
 class _AppStateContainerState extends State<AppStateContainer> {
-
   @override
   initState() {
     checkPermissions();
@@ -34,7 +32,6 @@ class _AppStateContainerState extends State<AppStateContainer> {
       child: widget.child,
     );
   }
-
 }
 
 class _InheritedStateContainer extends InheritedWidget {
@@ -51,9 +48,14 @@ class _InheritedStateContainer extends InheritedWidget {
 }
 
 checkPermissions() async {
-  List permissionList = [Permission.camera,Permission.storage,Permission.location,Permission.microphone, Permission.accessMediaLocation];
-  for(int i = 0; i < permissionList.length; i++)
-  {
+  List permissionList = [
+    Permission.camera,
+    Permission.storage,
+    Permission.location,
+    Permission.microphone,
+    Permission.accessMediaLocation
+  ];
+  for (int i = 0; i < permissionList.length; i++) {
     Permission permission = permissionList[i];
     var res = await permission.status;
     if (res != PermissionStatus.granted) {
